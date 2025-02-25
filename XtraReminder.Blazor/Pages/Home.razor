@@ -1,0 +1,121 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<PageTitle>XtraReminder</PageTitle>
+
+<h1>XtraReminder</h1>
+
+<div class="row mt-5">
+    <div class="col-lg-7">
+        <div class="form-group">
+            <label>Description</label>
+            <input class="form-control" @bind="createRequest.Description" />
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label>Date</label>
+            <input class="form-control" type="date" @bind="createRequest.Date" />
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label>Priority</label>
+            <select class="form-control" @bind="createRequest.Priority">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-lg-1 d-flex align-items-end">
+        <button class="btn btn-primary form-control" @onclick="Create">Add</button>
+    </div>
+</div>
+
+<table class="table table-responsive table-bordered mt-5">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Priority</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var reminder in reminders)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" class="form-check-input" checked="@reminder.IsDone" @bind-value="reminder.IsDone" @bind-value:after="() => Update(reminder)" />
+                </td>
+                <td>
+                    @if (reminder.IsDone)
+                    {
+                        <del>@reminder.Description</del>
+                    }
+                    else
+                    {
+                        @reminder.Description
+                    }
+                </td>
+                <td>
+                    @reminder.Date?.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @reminder.Priority
+                </td>
+                <td>
+                    <button class="btn btn-danger" @onclick="() => Delete(reminder)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private ReminderRequest createRequest = new();
+    private List<ReminderResponse> reminders = [];
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task LoadData()
+    {
+        reminders = await Http.GetFromJsonAsync<List<ReminderResponse>>("reminders") ?? [];
+    }
+
+    private async Task Create()
+    {
+        await Http.PostAsJsonAsync("reminders", createRequest);
+        await LoadData();
+        createRequest = new();
+    }
+
+    private async Task Update(ReminderResponse response)
+    {
+        var updateRequest = new ReminderRequest
+        {
+            Description = response.Description,
+            Date = response.Date,
+            Priority = response.Priority,
+            IsDone = response.IsDone
+        };  
+
+        await Http.PutAsJsonAsync($"reminders/{response.Id}", updateRequest);
+
+        await LoadData();
+    }
+
+    private async Task Delete(ReminderResponse response)
+    {
+        await Http.DeleteAsync($"reminders/{response.Id}");
+        await LoadData();
+    }
+}
