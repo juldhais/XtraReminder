@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtraReminder.Shared", "Xtra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtraReminder.Blazor", "XtraReminder.Blazor\XtraReminder.Blazor.csproj", "{45675968-83D5-4898-8095-8666116F2905}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtraReminder.AppHost", "XtraReminder.AppHost\XtraReminder.AppHost.csproj", "{17ED94D3-3CC6-4A14-B0B5-2514164F57BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XtraReminder.ServiceDefaults", "XtraReminder.ServiceDefaults\XtraReminder.ServiceDefaults.csproj", "{E0D80ECF-FC5A-4E3D-9804-9B1B52808E47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{45675968-83D5-4898-8095-8666116F2905}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45675968-83D5-4898-8095-8666116F2905}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45675968-83D5-4898-8095-8666116F2905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17ED94D3-3CC6-4A14-B0B5-2514164F57BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17ED94D3-3CC6-4A14-B0B5-2514164F57BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17ED94D3-3CC6-4A14-B0B5-2514164F57BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17ED94D3-3CC6-4A14-B0B5-2514164F57BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0D80ECF-FC5A-4E3D-9804-9B1B52808E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0D80ECF-FC5A-4E3D-9804-9B1B52808E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0D80ECF-FC5A-4E3D-9804-9B1B52808E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0D80ECF-FC5A-4E3D-9804-9B1B52808E47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\XtraReminder.ServiceDefaults\XtraReminder.ServiceDefaults.csproj" />
     <ProjectReference Include="..\XtraReminder.Shared\XtraReminder.Shared.csproj" />
   </ItemGroup>
 
